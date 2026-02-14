@@ -48,10 +48,10 @@ const SettingsPage = () => {
       <h2 className="font-serif text-foreground mb-2">Settings</h2>
       <p className="text-muted-foreground mb-10">Configure your job matching preferences.</p>
 
-      <div className="space-y-8">
+      <div className="bg-card p-8 rounded-xl shadow-sm border border-border space-y-10">
         {/* Role Keywords */}
         <div className="space-y-2">
-          <Label>Role Keywords</Label>
+          <Label className="font-semibold">Role Keywords</Label>
           <Input
             placeholder="e.g. Frontend Developer, React, SDE"
             value={prefs.roleKeywords.join(", ")}
@@ -67,7 +67,7 @@ const SettingsPage = () => {
 
         {/* Preferred Locations */}
         <div className="space-y-2">
-          <Label>Preferred Locations</Label>
+          <Label className="font-semibold">Preferred Locations</Label>
           <div className="flex flex-wrap gap-3">
             {LOCATIONS.map((loc) => (
               <label key={loc} className="flex items-center gap-2 text-sm cursor-pointer">
@@ -83,7 +83,7 @@ const SettingsPage = () => {
 
         {/* Preferred Mode */}
         <div className="space-y-2">
-          <Label>Preferred Mode</Label>
+          <Label className="font-semibold">Preferred Mode</Label>
           <div className="flex flex-wrap gap-4">
             {MODES.map((mode) => (
               <label key={mode} className="flex items-center gap-2 text-sm cursor-pointer">
@@ -99,7 +99,7 @@ const SettingsPage = () => {
 
         {/* Experience Level */}
         <div className="space-y-2">
-          <Label>Experience Level</Label>
+          <Label className="font-semibold">Experience Level</Label>
           <Select
             value={prefs.experienceLevel}
             onValueChange={(val) => setPrefs((p) => ({ ...p, experienceLevel: val }))}
@@ -117,7 +117,7 @@ const SettingsPage = () => {
 
         {/* Skills */}
         <div className="space-y-2">
-          <Label>Skills</Label>
+          <Label className="font-semibold">Skills</Label>
           <Input
             placeholder="e.g. React, TypeScript, Node.js"
             value={prefs.skills.join(", ")}
@@ -133,7 +133,7 @@ const SettingsPage = () => {
 
         {/* Min Match Score */}
         <div className="space-y-2">
-          <Label>Minimum Match Score: {prefs.minMatchScore}</Label>
+          <Label className="font-semibold">Minimum Match Score: {prefs.minMatchScore}</Label>
           <Slider
             value={[prefs.minMatchScore]}
             onValueChange={([val]) => setPrefs((p) => ({ ...p, minMatchScore: val }))}

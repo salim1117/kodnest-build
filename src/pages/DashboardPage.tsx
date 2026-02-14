@@ -51,9 +51,10 @@ const DashboardPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="bg-accent/30 min-h-screen -mx-6 -my-8 px-6 py-8">
+      <div className="max-w-7xl mx-auto">
       <h2 className="font-serif text-foreground mb-2">Dashboard</h2>
-      <p className="text-muted-foreground mb-6 text-block">
+      <p className="text-muted-foreground mb-8 text-block">
         Browse and filter jobs matched to your preferences.
       </p>
 
@@ -81,9 +82,9 @@ const DashboardPage = () => {
         </div>
       )}
 
-      <p className="text-sm text-muted-foreground mb-4">{filteredJobs.length} jobs found</p>
+      <p className="text-sm text-muted-foreground mb-6">{filteredJobs.length} jobs found</p>
 
-      <div className="grid gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {filteredJobs.map((job) => (
           <JobCard
             key={job.id}
@@ -104,6 +105,7 @@ const DashboardPage = () => {
           onClose={() => setSelectedJob(null)}
         />
       )}
+    </div>
     </div>
   );
 };
