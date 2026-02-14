@@ -16,7 +16,7 @@ const NavBar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <nav className="border-b border-border bg-background">
+    <nav className="border-b border-border bg-background shadow-sm sticky top-0 z-50">
       <div className="flex items-center justify-between px-10 py-4">
         <span className="font-serif text-lg font-semibold text-foreground">
           KodNest
@@ -28,7 +28,7 @@ const NavBar = () => {
             <li key={item.to}>
               <NavLink
                 to={item.to}
-                className="text-sm text-muted-foreground pb-1 border-b-2 border-transparent transition-default"
+                className="text-sm text-muted-foreground hover:text-foreground pb-1 border-b-2 border-transparent transition-all duration-200"
                 activeClassName="text-foreground border-b-2 border-primary font-medium"
               >
                 {item.label}
