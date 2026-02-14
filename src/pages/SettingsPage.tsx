@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,13 +12,18 @@ const LOCATIONS = ["Bangalore", "Hyderabad", "Mumbai", "Pune", "Chennai", "Delhi
 const MODES = ["Remote", "Hybrid", "On-site"];
 const EXPERIENCE_LEVELS = ["Fresher", "1-3 years", "3-5 years", "5-8 years", "8+ years"];
 
-const SettingsPage = () => {
-  const [prefs, setPrefs] = useState<JobTrackerPreferences>(defaultPreferences);
+const arraysEqual = (a: string[], b: string[]) => {
+  if (a.length !== b.length) return false;
+  return a.every((val, index) => val === b[index]);
+};
 
-  useEffect(() => {
+const SettingsPage = () => {
+  const [prefs, setPrefs] = useState<JobTrackerPreferences>(() => {
     const saved = getPreferences();
-    if (saved) setPrefs(saved);
-  }, []);
+    return saved || defaultPreferences;
+  });
+  const [roleKeywordsInput, setRoleKeywordsInput] = useState(() => prefs.roleKeywords.join(", "));
+  const [skillsInput, setSkillsInput] = useState(() => prefs.skills.join(", "));
 
   const handleSave = () => {
     savePreferences(prefs);
@@ -54,13 +59,14 @@ const SettingsPage = () => {
           <Label className="font-semibold">Role Keywords</Label>
           <Input
             placeholder="e.g. Frontend Developer, React, SDE"
-            value={prefs.roleKeywords.join(", ")}
-            onChange={(e) =>
-              setPrefs((p) => ({
-                ...p,
-                roleKeywords: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
-              }))
-            }
+            value={roleKeywordsInput}
+            onChange={(e) => setRoleKeywordsInput(e.target.value)}
+            onBlur={() => {
+              const parsed = roleKeywordsInput.split(",").map((s) => s.trim()).filter(Boolean);
+              if (!arraysEqual(parsed, prefs.roleKeywords)) {
+                setPrefs((p) => ({ ...p, roleKeywords: parsed }));
+              }
+            }}
           />
           <p className="text-sm text-muted-foreground">Comma-separated keywords to match against job titles and descriptions.</p>
         </div>
@@ -120,13 +126,14 @@ const SettingsPage = () => {
           <Label className="font-semibold">Skills</Label>
           <Input
             placeholder="e.g. React, TypeScript, Node.js"
-            value={prefs.skills.join(", ")}
-            onChange={(e) =>
-              setPrefs((p) => ({
-                ...p,
-                skills: e.target.value.split(",").map((s) => s.trim()).filter(Boolean),
-              }))
-            }
+            value={skillsInput}
+            onChange={(e) => setSkillsInput(e.target.value)}
+            onBlur={() => {
+              const parsed = skillsInput.split(",").map((s) => s.trim()).filter(Boolean);
+              if (!arraysEqual(parsed, prefs.skills)) {
+                setPrefs((p) => ({ ...p, skills: parsed }));
+              }
+            }}
           />
           <p className="text-sm text-muted-foreground">Comma-separated skills to match against job requirements.</p>
         </div>
