@@ -16,7 +16,7 @@ const LandingPage = () => {
             Precision-matched job discovery delivered daily at 9AM.
           </p>
           <Link to="/settings">
-            <Button className="mt-10" size="lg">
+            <Button className="mt-10 text-lg px-12 py-6 h-16 rounded-xl" size="lg">
               Start Tracking
             </Button>
           </Link>
