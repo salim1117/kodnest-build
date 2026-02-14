@@ -152,7 +152,7 @@ const SettingsPage = () => {
           <p className="text-sm text-muted-foreground">Jobs below this score can be hidden with the dashboard toggle.</p>
         </div>
 
-        <Button onClick={handleSave} size="lg">Save Preferences</Button>
+        <Button onClick={handleSave} size="lg" className="text-base px-10 py-5 h-14">Save Preferences</Button>
       </div>
     </div>
   );
