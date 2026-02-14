@@ -1,5 +1,7 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { ExternalLink } from "lucide-react";
 import { getScoreBadgeColor, type ScoredJob } from "@/lib/matchEngine";
 
 interface JobDetailModalProps {
@@ -11,9 +13,9 @@ interface JobDetailModalProps {
 const JobDetailModal = ({ job, open, onClose }: JobDetailModalProps) => {
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="max-w-lg">
+      <DialogContent className="max-w-xl">
         <DialogHeader>
-          <DialogTitle className="font-serif text-foreground">{job.title}</DialogTitle>
+          <DialogTitle className="font-serif text-foreground text-xl">{job.title}</DialogTitle>
         </DialogHeader>
         <div className="space-y-4">
           <div className="flex items-center gap-3 flex-wrap">
@@ -35,6 +37,14 @@ const JobDetailModal = ({ job, open, onClose }: JobDetailModalProps) => {
             Source: {job.source} · Posted {job.postedDaysAgo === 0 ? "today" : `${job.postedDaysAgo}d ago`}
           </p>
         </div>
+        <DialogFooter className="pt-2 gap-2">
+          <Button variant="outline" onClick={onClose}>Close</Button>
+          <a href={job.applyUrl} target="_blank" rel="noopener noreferrer">
+            <Button>
+              <ExternalLink className="h-4 w-4 mr-1" /> Apply Now
+            </Button>
+          </a>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
