@@ -56,17 +56,17 @@ export function calculateMatchScore(job: Job, prefs: JobTrackerPreferences): num
 }
 
 export function getScoreBadgeColor(score: number): string {
-  if (score >= 80) return "text-[hsl(var(--success))] bg-[hsl(var(--success))]/10";
-  if (score >= 60) return "text-[hsl(var(--warning))] bg-[hsl(var(--warning))]/10";
-  if (score >= 40) return "text-muted-foreground bg-muted";
-  return "text-muted-foreground/60 bg-muted/50";
+  if (score >= 80) return "text-success bg-success/10 border border-success/20";
+  if (score >= 60) return "text-warning bg-warning/10 border border-warning/20";
+  if (score >= 40) return "text-info bg-info/10 border border-info/20";
+  return "text-muted-foreground bg-muted/50";
 }
 
 export function getStatusBadgeColor(status: string): string {
   switch (status) {
-    case "Applied": return "text-blue-700 bg-blue-50";
-    case "Rejected": return "text-red-700 bg-red-50";
-    case "Selected": return "text-[hsl(var(--success))] bg-[hsl(var(--success))]/10";
+    case "Applied": return "text-info bg-info/10 border border-info/20";
+    case "Rejected": return "text-destructive bg-destructive/10 border border-destructive/20";
+    case "Selected": return "text-success bg-success/10 border border-success/20";
     default: return "text-muted-foreground bg-muted";
   }
 }
