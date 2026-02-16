@@ -51,7 +51,7 @@ const DashboardPage = () => {
   }, []);
 
   return (
-    <div className="bg-accent/30 min-h-screen -mx-6 -my-8 px-6 py-8">
+    <div className="min-h-screen -mx-6 -my-8 px-6 py-8">
       <div className="max-w-7xl mx-auto">
       <h2 className="font-serif text-foreground mb-2">Dashboard</h2>
       <p className="text-muted-foreground mb-8 text-block">
